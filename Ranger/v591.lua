@@ -89,7 +89,7 @@ function setvalue(address,flags,value)
             gg.toast("ศัตรูตายอัตโนมัติกำลังทำงาน ⭕")
             RangesList = gg.getRangesList("libgame.so")[1].start
             offset = 0x5246F4
-            setvalue(RangesList + offset, 16,100000)
+            setvalue(RangesList + offset, 16,99999)
             EnableMO3 = "[❌]"
         elseif EnableMO3 == "[❌]" then
             gg.toast("ศัตรูตายอัตโนมัติหยุดทำงานแล้ว ❌")
