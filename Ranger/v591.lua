@@ -7,6 +7,11 @@ function setvalue(address,flags,value)
     nahuh[1].value = value
     gg.setValues(nahuh)
     end
+
+    local defaultspeed = defaultspeed
+    local defaultcooldown = defaultcooldown
+    local defaultdamage = defaultdamage
+    local defaultrange = defaultrange
     
     defaultspeed = 1000000
     defaultcooldown = 0
@@ -24,6 +29,8 @@ function setvalue(address,flags,value)
         EnableMO4.."ตีป้อมทีเดียว",
         EnableMO5.."เร่งเวลาเกม",
         EnableMO6.."ตีไกลและเดินทะลุ",
+        EnableMO7.."จรวดไม่โดน",
+        EnableMO8.."ป้องกันแบน / ป้องกันรีพอร์ต",
         DisableMO.."ออก"
     },nil," 🧨🩸 ℂℝ𝕀𝕄𝕊𝕆ℕ ℍ𝕌𝔹 🌳 ")
     
@@ -34,6 +41,8 @@ function setvalue(address,flags,value)
     if menu[5] == true then IN5() end
     if menu[6] == true then IN6() end
     if menu[7] == true then IN7() end
+    if menu[8] == true then IN8() end
+    if menu[9] == true then IN9() end
     end
     
     EnableMO1 = "[⭕]"
@@ -134,19 +143,53 @@ function setvalue(address,flags,value)
         },{defaultrange},{
                 "number"
             })
-            gg.toast("เพิ่มระยะกำลังทำงาน ⭕")
                 RangesList = gg.getRangesList("libgame.so")[1].start
                 offset = 0x53DE40
                 setvalue(RangesList + offset, 16,drop10[1])
                 defaultrange = drop10[1]
-                EnableMO6 = "[❌]"
+            gg.toast("เพิ่มระยะกำลังทำงาน ⭕")
+            EnableMO6 = "[❌]"
         if drop10[1] == "0" or drop10[2] == "0" then
-            gg.toast("เพิ่มระยะหยุดทำงานแล้ว ❌")
+            gg.toast("เพิ่มระยะและเดินทะลุหยุดทำงานแล้ว ❌")
             EnableMO6 = "[⭕]"
         end
     end
-    
+
+    EnableMO7 = "[⭕]"
     function IN7()
+        if EnableMO7 == "[⭕]" then
+            gg.toast("จรวดไม่โดนกำลังทำงาน ⭕")
+            RangesList = gg.getRangesList("libgame.so")[1].start
+            offset = 0x4DF3A0
+            setvalue(RangesList + offset, 16,-99999)
+            EnableMO7 = "[❌]"
+        elseif EnableMO7 == "[❌]" then
+            gg.toast("จรวดไม่โดนหยุดทำงานแล้ว ❌")
+            RangesList = gg.getRangesList("libgame.so")[1].start
+            offset = 0x4DF3A0
+            setvalue(RangesList + offset, 16,90)
+            EnableMO7 = "[⭕]"
+        end
+    end
+
+    EnableMO8 = "[⭕]"
+    function IN8()
+        if EnableMO7 == "[⭕]" then
+            gg.toast("ป้องกันแบน / ป้องกันรีพอร์ตกำลังทำงาน ⭕")
+            RangesList = gg.getRangesList("libgame.so")[1].start
+            offset = 0x124856C
+            setvalue(RangesList + offset, 16,"1.40129846e-40")
+            EnableMO7 = "[❌]"
+        elseif EnableMO7 == "[❌]" then
+            gg.toast("ป้องกันแบน / ป้องกันรีพอร์ตหยุดทำงานแล้ว ❌")
+            RangesList = gg.getRangesList("libgame.so")[1].start
+            offset = 0x124856C
+            setvalue(RangesList + offset, 16,"2.24207754e-43")
+            EnableMO7 = "[⭕]"
+        end
+    end
+    
+    function IN9()
         gg.toast(" ❌GoodBye❌ ")
         os.exit()
         
