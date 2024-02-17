@@ -174,18 +174,18 @@ function setvalue(address,flags,value)
 
     EnableMO8 = "[⭕]"
     function IN8()
-        if EnableMO7 == "[⭕]" then
+        if EnableMO8 == "[⭕]" then
             gg.toast("ป้องกันแบน / ป้องกันรีพอร์ตกำลังทำงาน ⭕")
             RangesList = gg.getRangesList("libgame.so")[1].start
             offset = 0x124856C
             setvalue(RangesList + offset, 16,"1.40129846e-40")
-            EnableMO7 = "[❌]"
-        elseif EnableMO7 == "[❌]" then
+            EnableMO8 = "[❌]"
+        elseif EnableMO8 == "[❌]" then
             gg.toast("ป้องกันแบน / ป้องกันรีพอร์ตหยุดทำงานแล้ว ❌")
             RangesList = gg.getRangesList("libgame.so")[1].start
             offset = 0x124856C
             setvalue(RangesList + offset, 16,"2.24207754e-43")
-            EnableMO7 = "[⭕]"
+            EnableMO8 = "[⭕]"
         end
     end
     
