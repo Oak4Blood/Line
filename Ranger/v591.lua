@@ -130,7 +130,7 @@ function setvalue(address,flags,value)
     EnableMO6 = "[⭕]"
     function IN6()
         drop10 = gg.prompt({
-            "ถ้าปรับเป็นค่าติดลบจะเดินทะลุ หรือถ้าปรับเป็นค่าบสกจะตีไกล ปกติคือ 0"
+            "ถ้าปรับเป็นค่าติดลบจะเดินทะลุ หรือถ้าปรับเป็นค่าบวกจะตีไกล ปกติคือ 0"
         },{defaultrange},{
                 "number"
             })
